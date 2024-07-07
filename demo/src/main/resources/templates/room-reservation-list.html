@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Landon Hotel | Reservations</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+  <header th:insert="navbar"></header>
+  <main class="container">
+    <h1>Reservations</h1>
+    <form action="#" th:action="@{/rooms/reservations}" method="get">
+      <div class="mb-3 form-check">
+        <label class="form-check-label" for="date">Day</label>
+        <input type="date" id="date" name="date" class="form-control" th:value="*{date}">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </form>
+    <table class="table">
+      <thead>
+        <th scope="col">Number</th>
+        <th scope="col">Name</th>
+        <th scope="col">Bed Info</th>
+      </thead>
+      <tbody>
+        <tr th:each="room : ${rooms}">
+          <td th:text="${room.roomNumber}">Room Number</td>
+          <td th:text="${room.roomName}">Room Name</td>
+          <td th:if="${room.reservationId}" th:text="${room.firstName} + ' ' + ${room.lastName}">Reservation</td>
+          <td th:unless="${room.reservationId}">Vacant</td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

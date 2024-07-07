@@ -1,0 +1,20 @@
+services:
+  db:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: devpass
+      MYSQL_DATABASE: devdb
+    volumes:
+      - dbvolume:/var/lib/mysql
+    ports:
+      - '3306:3306'
+
+  myadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_ARBITRARY: 1
+    ports:
+      - '8883:80'
+
+volumes: 
+  dbvolume: {}
